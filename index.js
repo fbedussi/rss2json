@@ -1,5 +1,8 @@
-const micro = require('micro')
+const micro = require("micro");
+const query = require("micro-query");
+var Feed = require("rss-to-json");
 
 module.exports = micro((req, res) => {
-  return 'Hello from Micro on Now 2.0!'
-})
+  const { url = "" } = query(req);
+  return url;
+});
