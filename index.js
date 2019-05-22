@@ -1,8 +1,10 @@
 const micro = require("micro");
 const query = require("micro-query");
+const cors = require("micro-cors")();
+
 var Feed = require("rss-to-json");
 
-module.exports = micro(async (req, res) => {
+const handle = async (req, res) => {
   const { url = "" } = query(req);
 
   const rss = await new Promise(resolve => {
@@ -12,4 +14,6 @@ module.exports = micro(async (req, res) => {
   });
 
   return rss;
-});
+};
+
+module.exports = micro(cors(handle));
