@@ -4,6 +4,6 @@
     "micro": "^9.3.5-canary.1",
     "micro-cors": "^0.1.1",
     "micro-query": "^0.3.0",
-    "rss-to-json": "^1.0.4"
+    "rss-parser": "^3.7.0"
   }
 }
