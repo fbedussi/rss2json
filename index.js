@@ -9,7 +9,18 @@ const handle = async (req, res) => {
   const { url = "" } = query(req);
 
   try {
-    return await parser.parseURL(url);
+    const parsedFeed = await parser.parseURL(url);
+    return {
+      ...parsedFeed,
+      items: parsedFeed.items.map(
+        ({ link, title, content, isoDate, pubDate }) => ({
+          link,
+          title,
+          content,
+          isoDate: isoDate || pubDate
+        })
+      )
+    };
   } catch (e) {
     micro.send(res, 500, e.message);
   }
