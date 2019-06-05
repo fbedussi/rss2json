@@ -11,7 +11,6 @@ const handle = async (req, res) => {
   try {
     const parsedFeed = await parser.parseURL(url);
     return {
-      ...parsedFeed,
       items: parsedFeed.items.map(
         ({ link, title, content, isoDate, pubDate }) => ({
           link,
